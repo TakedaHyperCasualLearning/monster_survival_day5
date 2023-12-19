@@ -15,6 +15,8 @@ GameObject:
   - component: {fileID: 4107978124315905697}
   - component: {fileID: 4107978124315905696}
   - component: {fileID: 5170149967056871532}
+  - component: {fileID: -2169506989198982126}
+  - component: {fileID: 5335186794519171431}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -142,3 +144,31 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   attackInterval: 0.5
   bulletPrefab: {fileID: 7217148340809771779, guid: ed4ccf23996d74de2a7f052766d3c325, type: 3}
+--- !u!114 &-2169506989198982126
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4107978124315905711}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a69ae143cfdbb48d2908b4ee82ed9824, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  objectTag: Player
+  radius: 0.25
+--- !u!114 &5335186794519171431
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4107978124315905711}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7d94e8f2ee5b340f88bff290dcb3a23a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  isInterval: 1
+  damageInterval: 0.5

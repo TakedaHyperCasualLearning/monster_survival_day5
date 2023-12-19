@@ -13,6 +13,8 @@ GameObject:
   - component: {fileID: 4804303768330960665}
   - component: {fileID: 4804303768330960677}
   - component: {fileID: 4804303768330960666}
+  - component: {fileID: 8956755660791713996}
+  - component: {fileID: 9119941443546578250}
   m_Layer: 0
   m_Name: Enemy
   m_TagString: Untagged
@@ -114,3 +116,29 @@ MonoBehaviour:
   speed: 1
   isLookAt: 1
   isChase: 1
+--- !u!114 &8956755660791713996
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4804303768330960671}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a69ae143cfdbb48d2908b4ee82ed9824, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  objectTag: Enemy
+  radius: 0.25
+--- !u!114 &9119941443546578250
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4804303768330960671}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7d94e8f2ee5b340f88bff290dcb3a23a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 7217148340809771777}
   - component: {fileID: 7217148340809771805}
   - component: {fileID: 7217148340809771804}
+  - component: {fileID: 8153898003025893956}
   m_Layer: 0
   m_Name: Bullet
   m_TagString: Untagged
@@ -111,3 +112,17 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   speed: 3
   deleteRange: 10
+--- !u!114 &8153898003025893956
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7217148340809771779}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a69ae143cfdbb48d2908b4ee82ed9824, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  objectTag: Bullet
+  radius: 0.15

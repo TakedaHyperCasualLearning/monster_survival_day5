@@ -561,4 +561,5 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   playerPrefab: {fileID: 4107978124315905711, guid: 000b1f91572204dc198813a74069337c, type: 3}
+  enemyPrefab: {fileID: 4804303768330960671, guid: 2d646823145a1412db64d6a297387979, type: 3}
   enemySpawner: {fileID: 1137424979}

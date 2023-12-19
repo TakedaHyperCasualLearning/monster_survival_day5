@@ -58,5 +58,14 @@ public class ObjectPool
         gameObject.SetActive(false);
     }
 
+    public List<GameObject> GetObjectList(GameObject prefab)
+    {
+        int hash = prefab.GetHashCode();
+
+        if (objectPoolList.ContainsKey(hash)) return objectPoolList[hash];
+
+        return null;
+    }
+
     public bool IsNewGenerate { get => isNewGenerate; set => isNewGenerate = value; }
 }
