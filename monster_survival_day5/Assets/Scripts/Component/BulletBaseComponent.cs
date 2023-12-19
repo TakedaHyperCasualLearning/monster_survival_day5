@@ -4,5 +4,7 @@ using UnityEngine;
 
 public class BulletBaseComponent : MonoBehaviour
 {
+    private int attackPoint;
 
+    public int AttackPoint { get => attackPoint; set => attackPoint = value; }
 }

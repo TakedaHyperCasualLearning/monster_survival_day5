@@ -8,6 +8,7 @@ public class PlayerAttackSystem
     private ObjectPool objectPool;
     private List<PlayerAttackComponent> playerAttackComponentList = new List<PlayerAttackComponent>();
     private List<InputComponent> inputComponentList = new List<InputComponent>();
+    private List<CharacterBaseComponent> characterBaseComponentList = new List<CharacterBaseComponent>();
 
 
     public PlayerAttackSystem(GameEvent gameEvent, ObjectPool objectPool)
@@ -33,15 +34,16 @@ public class PlayerAttackSystem
 
             if (!inputComponentList[i].IsClick) continue;
             playerAttackComponent.AttackTimer = 0;
-            Attack(playerAttackComponent);
+            Attack(playerAttackComponent, characterBaseComponentList[i]);
         }
     }
 
-    public void Attack(PlayerAttackComponent playerAttackComponent)
+    public void Attack(PlayerAttackComponent playerAttackComponent, CharacterBaseComponent characterBaseComponent)
     {
         GameObject bullet = objectPool.GetGameObject(playerAttackComponent.BulletPrefab);
         bullet.transform.position = playerAttackComponent.gameObject.transform.position;
         bullet.GetComponent<BulletMoveComponent>().Direction = playerAttackComponent.gameObject.transform.forward;
+        bullet.GetComponent<BulletBaseComponent>().AttackPoint = characterBaseComponent.AttackPoint;
         if (!objectPool.IsNewGenerate) return;
         gameEvent.AddComponentList?.Invoke(bullet);
         objectPool.IsNewGenerate = false;
@@ -51,21 +53,25 @@ public class PlayerAttackSystem
     {
         PlayerAttackComponent playerAttackComponent = gameObject.GetComponent<PlayerAttackComponent>();
         InputComponent inputComponent = gameObject.GetComponent<InputComponent>();
+        CharacterBaseComponent characterBaseComponent = gameObject.GetComponent<CharacterBaseComponent>();
 
-        if (playerAttackComponent == null || inputComponent == null) return;
+        if (playerAttackComponent == null || inputComponent == null || characterBaseComponent == null) return;
 
         playerAttackComponentList.Add(playerAttackComponent);
         inputComponentList.Add(inputComponent);
+        characterBaseComponentList.Add(characterBaseComponent);
     }
 
     private void RemoveComponentList(GameObject gameObject)
     {
         PlayerAttackComponent playerAttackComponent = gameObject.GetComponent<PlayerAttackComponent>();
         InputComponent inputComponent = gameObject.GetComponent<InputComponent>();
+        CharacterBaseComponent characterBaseComponent = gameObject.GetComponent<CharacterBaseComponent>();
 
-        if (playerAttackComponent == null || inputComponent == null) return;
+        if (playerAttackComponent == null || inputComponent == null || characterBaseComponent == null) return;
 
         playerAttackComponentList.Remove(playerAttackComponent);
         inputComponentList.Remove(inputComponent);
+        characterBaseComponentList.Remove(characterBaseComponent);
     }
 }
