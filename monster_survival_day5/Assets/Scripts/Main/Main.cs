@@ -11,6 +11,7 @@ public class Main : MonoBehaviour
     private CharacterMoveSystem characterMoveSystem;
 
     private PlayerInputSystem playerInputSystem;
+    private PlayerAttackSystem playerAttackSystem;
 
     void Start()
     {
@@ -21,6 +22,7 @@ public class Main : MonoBehaviour
         characterMoveSystem = new CharacterMoveSystem(gameEvent);
 
         playerInputSystem = new PlayerInputSystem(gameEvent);
+        playerAttackSystem = new PlayerAttackSystem(gameEvent);
 
         gameEvent.AddComponentList?.Invoke(player);
     }
@@ -29,5 +31,6 @@ public class Main : MonoBehaviour
     {
         playerInputSystem.OnUpdate();
         characterMoveSystem.OnUpdate();
+        playerAttackSystem.OnUpdate();
     }
 }

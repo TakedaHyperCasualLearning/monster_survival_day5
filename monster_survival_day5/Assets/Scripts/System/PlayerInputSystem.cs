@@ -26,7 +26,7 @@ public class PlayerInputSystem : MonoBehaviour
             CharacterMoveComponent characterMoveComponent = characterMoveComponentList[i];
             InputMove(characterMoveComponent);
             InputLookAt(characterMoveComponent);
-            InputClick();
+            InputClick(inputComponent);
         }
     }
 
@@ -50,9 +50,15 @@ public class PlayerInputSystem : MonoBehaviour
         characterMoveComponent.TargetPosition = Camera.main.ScreenToWorldPoint(playerPoint + rotationDirection);
     }
 
-    private void InputClick()
+    private void InputClick(InputComponent inputComponent)
     {
+        if (Input.GetMouseButton(0))
+        {
+            inputComponent.IsClick = true;
+            return;
+        }
 
+        inputComponent.IsClick = false;
     }
 
     public void AddComponentList(GameObject gameObject)
