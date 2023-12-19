@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -26,6 +27,11 @@ public class PlayerAttackSystem
             PlayerAttackComponent playerAttackComponent = playerAttackComponentList[i];
             if (!playerAttackComponent.gameObject.activeSelf) continue;
 
+            if (Input.GetKeyDown(KeyCode.K))
+            {
+                playerAttackComponent.Split++;
+            }
+
             if (playerAttackComponent.AttackTimer < playerAttackComponent.AttackInterval)
             {
                 playerAttackComponent.AttackTimer += Time.deltaTime;
@@ -40,13 +46,21 @@ public class PlayerAttackSystem
 
     public void Attack(PlayerAttackComponent playerAttackComponent, CharacterBaseComponent characterBaseComponent)
     {
-        GameObject bullet = objectPool.GetGameObject(playerAttackComponent.BulletPrefab);
-        bullet.transform.position = playerAttackComponent.gameObject.transform.position;
-        bullet.GetComponent<BulletMoveComponent>().Direction = playerAttackComponent.gameObject.transform.forward;
-        bullet.GetComponent<BulletBaseComponent>().AttackPoint = characterBaseComponent.AttackPoint;
-        if (!objectPool.IsNewGenerate) return;
-        gameEvent.AddComponentList?.Invoke(bullet);
-        objectPool.IsNewGenerate = false;
+        for (int i = 0; i < playerAttackComponent.Split; i++)
+        {
+            GameObject bullet = objectPool.GetGameObject(playerAttackComponent.BulletPrefab);
+            bullet.transform.position = playerAttackComponent.gameObject.transform.position;
+            // Vector3 angle = new Vector3(180 / (playerAttackComponent.Split + 1) * (i - 1) - 180, 0, 180 / (playerAttackComponent.Split + 1) * (i - 1) - 180);
+            Vector3 angle = new Vector3(0, 180 / (playerAttackComponent.Split + 1) * (i + 1) - 90, 0);
+            Quaternion angleQuat = Quaternion.Euler(angle);
+            Debug.Log("sprit:" + i + "angle:" + angle);
+            bullet.GetComponent<BulletMoveComponent>().Direction = angleQuat * playerAttackComponent.gameObject.transform.forward;
+            // bullet.GetComponent<BulletMoveComponent>().Direction = playerAttackComponent.gameObject.transform.forward + angle.normalized;
+            bullet.GetComponent<BulletBaseComponent>().AttackPoint = characterBaseComponent.AttackPoint;
+            if (!objectPool.IsNewGenerate) continue;
+            gameEvent.AddComponentList?.Invoke(bullet);
+            objectPool.IsNewGenerate = false;
+        }
     }
 
     private void AddComponentList(GameObject gameObject)
