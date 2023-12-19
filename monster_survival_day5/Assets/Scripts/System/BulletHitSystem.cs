@@ -27,6 +27,7 @@ public class BulletHitSystem
             if (!bulletBaseComponent.gameObject.activeSelf) continue;
 
             List<GameObject> tempList = objectPool.GetObjectList(enemyPrefab);
+            if (tempList == null) continue;
             for (int j = 0; j < tempList.Count; j++)
             {
                 GameObject enemyObject = tempList[j];

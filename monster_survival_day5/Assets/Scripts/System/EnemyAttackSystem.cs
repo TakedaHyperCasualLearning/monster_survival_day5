@@ -25,7 +25,7 @@ public class EnemyAttackSystem
 
             for (int j = 0; j < collisionComponentList.Count; j++)
             {
-                if (!characterBaseComponentList[i].gameObject.activeSelf) continue;
+                if (!characterBaseComponentList[j].gameObject.activeSelf) continue;
                 if (collisionComponentList[i].ObjectTag == collisionComponentList[j].ObjectTag) continue;
 
                 if ((collisionComponentList[i].gameObject.transform.position - collisionComponentList[j].gameObject.transform.position).magnitude > collisionComponentList[i].Radius + collisionComponentList[j].Radius) continue;
