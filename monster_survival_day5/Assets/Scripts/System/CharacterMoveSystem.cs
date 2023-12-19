@@ -29,7 +29,7 @@ public class CharacterMoveSystem
             }
             if (characterMoveComponent.IsChase)
             {
-                characterMoveComponent.Direction = characterMoveComponent.gameObject.transform.forward;
+                characterMoveComponent.Direction = Vector3.forward;
             }
 
             characterMoveComponent.transform.Translate(characterMoveComponent.Direction * characterMoveComponent.Speed * Time.deltaTime, Space.Self);
