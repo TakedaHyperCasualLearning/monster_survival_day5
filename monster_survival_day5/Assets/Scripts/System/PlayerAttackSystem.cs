@@ -5,13 +5,15 @@ using UnityEngine;
 public class PlayerAttackSystem
 {
     private GameEvent gameEvent;
+    private ObjectPool objectPool;
     private List<PlayerAttackComponent> playerAttackComponentList = new List<PlayerAttackComponent>();
     private List<InputComponent> inputComponentList = new List<InputComponent>();
 
 
-    public PlayerAttackSystem(GameEvent gameEvent)
+    public PlayerAttackSystem(GameEvent gameEvent, ObjectPool objectPool)
     {
         this.gameEvent = gameEvent;
+        this.objectPool = objectPool;
         gameEvent.AddComponentList += AddComponentList;
         gameEvent.RemoveComponentList += RemoveComponentList;
     }
@@ -31,13 +33,18 @@ public class PlayerAttackSystem
 
             if (!inputComponentList[i].IsClick) continue;
             playerAttackComponent.AttackTimer = 0;
-            Attack();
+            Attack(playerAttackComponent);
         }
     }
 
-    public void Attack()
+    public void Attack(PlayerAttackComponent playerAttackComponent)
     {
-        Debug.Log("Attack");
+        GameObject bullet = objectPool.GetGameObject(playerAttackComponent.BulletPrefab);
+        bullet.transform.position = playerAttackComponent.gameObject.transform.position;
+        bullet.GetComponent<BulletMoveComponent>().Direction = playerAttackComponent.gameObject.transform.forward;
+        if (!objectPool.IsNewGenerate) return;
+        gameEvent.AddComponentList?.Invoke(bullet);
+        objectPool.IsNewGenerate = false;
     }
 
     private void AddComponentList(GameObject gameObject)

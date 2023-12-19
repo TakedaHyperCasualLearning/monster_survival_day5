@@ -17,6 +17,8 @@ public class Main : MonoBehaviour
 
     private EnemySpawnSystem enemySpawnSystem;
 
+    private BulletMoveSystem bulletMoveSystem;
+
     void Start()
     {
         player = Instantiate(playerPrefab, new Vector3(0, 0, 0), Quaternion.identity);
@@ -27,9 +29,11 @@ public class Main : MonoBehaviour
         characterMoveSystem = new CharacterMoveSystem(gameEvent);
 
         playerInputSystem = new PlayerInputSystem(gameEvent);
-        playerAttackSystem = new PlayerAttackSystem(gameEvent);
+        playerAttackSystem = new PlayerAttackSystem(gameEvent, objectPool);
 
         enemySpawnSystem = new EnemySpawnSystem(gameEvent, objectPool, player);
+
+        bulletMoveSystem = new BulletMoveSystem(gameEvent, player);
 
         gameEvent.AddComponentList?.Invoke(player);
         gameEvent.AddComponentList?.Invoke(enemySpawner);
@@ -41,5 +45,7 @@ public class Main : MonoBehaviour
         characterMoveSystem.OnUpdate();
         playerAttackSystem.OnUpdate();
         enemySpawnSystem.OnUpdate();
+
+        bulletMoveSystem.OnUpdate();
     }
 }
