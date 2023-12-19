@@ -8,4 +8,5 @@ public class GameEvent
     public Action<GameObject> AddComponentList;
     public Action<GameObject> RemoveComponentList;
     public Action<GameObject> ReleaseObject;
+    public Action<GameObject> LevelUp;
 }

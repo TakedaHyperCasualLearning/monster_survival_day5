@@ -38,6 +38,17 @@ public class EnemySpawnSystem
             enemySpawnComponent.SpawnTimer = 0;
             Spawn(enemySpawnComponent);
         }
+
+        List<GameObject> tempList = objectPool.GetObjectList(enemySpawnComponentList[0].EnemyPrefab);
+        if (tempList == null) return;
+        for (int i = 0; i < tempList.Count; i++)
+        {
+            GameObject enemyObject = tempList[i];
+            if (!enemyObject.activeSelf) continue;
+
+            enemyObject.GetComponent<CharacterMoveComponent>().TargetPosition = playerObject.transform.position;
+
+        }
     }
 
     private void Spawn(EnemySpawnComponent enemySpawnComponent)
@@ -46,6 +57,8 @@ public class EnemySpawnSystem
         Vector3 spawnPosition = new Vector3(Random.Range(screenSize.x, screenSize.x + enemySpawnComponent.SpawnPositionOffset.x), 0.0f, Random.Range(screenSize.y, screenSize.y + enemySpawnComponent.SpawnPositionOffset.z));
         spawnPosition *= Random.Range(0, 2) == 0 ? 1 : -1;
         enemy.transform.position = playerObject.transform.position + spawnPosition;
+        CharacterBaseComponent characterBaseComponent = enemy.GetComponent<CharacterBaseComponent>();
+        characterBaseComponent.HitPoint = characterBaseComponent.HitPointMax;
         if (!objectPool.IsNewGenerate) return;
         gameEvent.AddComponentList?.Invoke(enemy);
         objectPool.IsNewGenerate = false;

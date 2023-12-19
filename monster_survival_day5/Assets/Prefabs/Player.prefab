@@ -18,6 +18,7 @@ GameObject:
   - component: {fileID: -2169506989198982126}
   - component: {fileID: 5335186794519171431}
   - component: {fileID: 2716135862423679783}
+  - component: {fileID: 2569465659778539427}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -103,6 +104,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   hitPoint: 100
+  hitPointMax: 100
   attackPoint: 1
 --- !u!114 &4107978124315905697
 MonoBehaviour:
@@ -186,5 +188,20 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   hitPointPrefab: {fileID: 1840180480451674232, guid: d56859e40b5324e99a36ed134397e442, type: 3}
-  hitPointParent: {fileID: 0}
   positionOffset: {x: 0, y: 0, z: 1}
+--- !u!114 &2569465659778539427
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4107978124315905711}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dc576bc565cab4ec8adc7c1c1ee728e3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  experiencePointBorder: 3
+  attackRaiseValue: 1
+  hitPointRaiseValue: 10
+  attackSpeedRaiseValue: 0.5

@@ -8,6 +8,7 @@ public class Main : MonoBehaviour
     [SerializeField] GameObject enemyPrefab;
     [SerializeField] GameObject enemySpawner;
     [SerializeField] GameObject hitPointTextParent;
+    [SerializeField] GameObject LevelUpUI;
     private GameObject player;
     private GameEvent gameEvent;
     private ObjectPool objectPool;
@@ -25,6 +26,9 @@ public class Main : MonoBehaviour
 
     private DamageSystem damageSystem;
     private HitPointUISystem hitPointUISystem;
+
+    private LevelUPSystem levelUPSystem;
+    private LevelUpUISystem levelUpUISystem;
 
     void Start()
     {
@@ -44,15 +48,25 @@ public class Main : MonoBehaviour
         bulletMoveSystem = new BulletMoveSystem(gameEvent, player);
         bulletHitSystem = new BulletHitSystem(gameEvent, objectPool, enemyPrefab);
 
-        damageSystem = new DamageSystem(gameEvent);
+        damageSystem = new DamageSystem(gameEvent, player);
         hitPointUISystem = new HitPointUISystem(gameEvent, hitPointTextParent);
+
+        levelUPSystem = new LevelUPSystem(gameEvent);
+        levelUpUISystem = new LevelUpUISystem(gameEvent, player);
 
         gameEvent.AddComponentList?.Invoke(player);
         gameEvent.AddComponentList?.Invoke(enemySpawner);
+        gameEvent.AddComponentList?.Invoke(LevelUpUI);
     }
 
     void Update()
     {
+
+        levelUPSystem.OnUpdate();
+        levelUpUISystem.OnUpdate();
+
+        if (levelUPSystem.IsLevelUP(player)) return;
+
         playerInputSystem.OnUpdate();
         characterMoveSystem.OnUpdate();
         playerAttackSystem.OnUpdate();
@@ -65,5 +79,6 @@ public class Main : MonoBehaviour
 
         damageSystem.OnUpdate();
         hitPointUISystem.OnUpdate();
+
     }
 }

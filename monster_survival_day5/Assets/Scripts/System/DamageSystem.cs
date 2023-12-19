@@ -5,13 +5,15 @@ using UnityEngine;
 public class DamageSystem
 {
     private GameEvent gameEvent;
+    private GameObject player;
     private List<DamageComponent> damageComponentList = new List<DamageComponent>();
     private List<CharacterBaseComponent> characterBaseComponentList = new List<CharacterBaseComponent>();
     private List<HitPointUIComponent> hitPointUIComponentList = new List<HitPointUIComponent>();
 
-    public DamageSystem(GameEvent gameEvent)
+    public DamageSystem(GameEvent gameEvent, GameObject player)
     {
         this.gameEvent = gameEvent;
+        this.player = player;
         gameEvent.AddComponentList += AddComponentList;
         gameEvent.RemoveComponentList += RemoveComponentList;
     }
@@ -40,6 +42,7 @@ public class DamageSystem
             if (characterBaseComponentList[i].HitPoint <= 0)
             {
                 gameEvent.ReleaseObject?.Invoke(damageComponent.gameObject);
+                player.GetComponent<LevelUPComponent>().ExperiencePoint += 1;
             }
         }
     }

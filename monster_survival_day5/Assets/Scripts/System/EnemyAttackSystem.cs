@@ -8,6 +8,7 @@ public class EnemyAttackSystem
     private List<CollisionComponent> collisionComponentList = new List<CollisionComponent>();
     private List<CharacterBaseComponent> characterBaseComponentList = new List<CharacterBaseComponent>();
     private List<DamageComponent> damageComponentList = new List<DamageComponent>();
+    private List<CharacterMoveComponent> characterMoveComponentList = new List<CharacterMoveComponent>();
 
     public EnemyAttackSystem(GameEvent gameEvent)
     {
@@ -52,12 +53,14 @@ public class EnemyAttackSystem
         CollisionComponent collisionComponent = gameObject.GetComponent<CollisionComponent>();
         CharacterBaseComponent characterBaseComponent = gameObject.GetComponent<CharacterBaseComponent>();
         DamageComponent damageComponent = gameObject.GetComponent<DamageComponent>();
+        CharacterMoveComponent characterMoveComponent = gameObject.GetComponent<CharacterMoveComponent>();
 
-        if (collisionComponent == null || characterBaseComponent == null || damageComponent == null) return;
+        if (collisionComponent == null || characterBaseComponent == null || damageComponent == null || characterBaseComponent == null) return;
 
         collisionComponentList.Add(collisionComponent);
         characterBaseComponentList.Add(characterBaseComponent);
         damageComponentList.Add(damageComponent);
+        characterMoveComponentList.Add(characterMoveComponent);
     }
 
     private void RemoveComponentList(GameObject gameObject)
@@ -65,11 +68,13 @@ public class EnemyAttackSystem
         CollisionComponent collisionComponent = gameObject.GetComponent<CollisionComponent>();
         CharacterBaseComponent characterBaseComponent = gameObject.GetComponent<CharacterBaseComponent>();
         DamageComponent damageComponent = gameObject.GetComponent<DamageComponent>();
+        CharacterMoveComponent characterMoveComponent = gameObject.GetComponent<CharacterMoveComponent>();
 
-        if (collisionComponent == null || characterBaseComponent == null || damageComponent == null) return;
+        if (collisionComponent == null || characterBaseComponent == null || damageComponent == null || characterBaseComponent == null) return;
 
         collisionComponentList.Remove(collisionComponent);
         characterBaseComponentList.Remove(characterBaseComponent);
         damageComponentList.Remove(damageComponent);
+        characterMoveComponentList.Remove(characterMoveComponent);
     }
 }

@@ -100,7 +100,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1d22e097dc5454c2f8e365cc13b0c294, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  hitPoint: 10
+  hitPoint: 5
+  hitPointMax: 5
   attackPoint: 5
 --- !u!114 &4804303768330960666
 MonoBehaviour:
@@ -158,5 +159,4 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   hitPointPrefab: {fileID: 1840180480451674232, guid: d56859e40b5324e99a36ed134397e442, type: 3}
-  hitPointParent: {fileID: 0}
   positionOffset: {x: 0, y: 0, z: 1}

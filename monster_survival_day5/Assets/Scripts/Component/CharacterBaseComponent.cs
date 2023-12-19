@@ -5,7 +5,7 @@ using UnityEngine;
 public class CharacterBaseComponent : MonoBehaviour
 {
     [SerializeField] private int hitPoint;
-    private int hitPointMax;
+    [SerializeField] private int hitPointMax;
     [SerializeField] private int attackPoint;
 
     public int HitPoint { get => hitPoint; set => hitPoint = value; }
