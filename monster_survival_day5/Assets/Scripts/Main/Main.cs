@@ -9,6 +9,9 @@ public class Main : MonoBehaviour
     [SerializeField] GameObject enemySpawner;
     [SerializeField] GameObject hitPointTextParent;
     [SerializeField] GameObject LevelUpUI;
+    [SerializeField] GameObject cameraObject;
+    [SerializeField] GameObject gameOverUI;
+
     private GameObject player;
     private GameEvent gameEvent;
     private ObjectPool objectPool;
@@ -29,6 +32,9 @@ public class Main : MonoBehaviour
 
     private LevelUPSystem levelUPSystem;
     private LevelUpUISystem levelUpUISystem;
+
+    private CameraMoveSystem cameraMoveSystem;
+    private GameOverSystem gameOverSystem;
 
     void Start()
     {
@@ -54,9 +60,14 @@ public class Main : MonoBehaviour
         levelUPSystem = new LevelUPSystem(gameEvent);
         levelUpUISystem = new LevelUpUISystem(gameEvent, player);
 
+        cameraMoveSystem = new CameraMoveSystem(gameEvent, player);
+        gameOverSystem = new GameOverSystem(gameEvent);
+
         gameEvent.AddComponentList?.Invoke(player);
         gameEvent.AddComponentList?.Invoke(enemySpawner);
         gameEvent.AddComponentList?.Invoke(LevelUpUI);
+        gameEvent.AddComponentList?.Invoke(cameraObject);
+        gameEvent.AddComponentList?.Invoke(gameOverUI);
     }
 
     void Update()
@@ -80,5 +91,7 @@ public class Main : MonoBehaviour
         damageSystem.OnUpdate();
         hitPointUISystem.OnUpdate();
 
+        cameraMoveSystem.OnUpdate();
+        gameOverSystem.OnUpdate();
     }
 }

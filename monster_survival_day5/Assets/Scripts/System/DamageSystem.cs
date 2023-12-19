@@ -41,8 +41,12 @@ public class DamageSystem
 
             if (characterBaseComponentList[i].HitPoint <= 0)
             {
+                damageComponent.gameObject.GetComponent<HitPointUIComponent>().HitPointText.gameObject.SetActive(false);
                 gameEvent.ReleaseObject?.Invoke(damageComponent.gameObject);
-                player.GetComponent<LevelUPComponent>().ExperiencePoint += 1;
+                if (damageComponent.gameObject != player)
+                    player.GetComponent<LevelUPComponent>().ExperiencePoint += 1;
+                if (damageComponent.gameObject == player)
+                    gameEvent.GameOver?.Invoke();
             }
         }
     }

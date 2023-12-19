@@ -103,8 +103,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1d22e097dc5454c2f8e365cc13b0c294, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  hitPoint: 100
-  hitPointMax: 100
+  hitPoint: 50
+  hitPointMax: 50
   attackPoint: 1
 --- !u!114 &4107978124315905697
 MonoBehaviour:
@@ -203,5 +203,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   experiencePointBorder: 3
   attackRaiseValue: 1
-  hitPointRaiseValue: 10
-  attackSpeedRaiseValue: 0.5
+  hitPointRaiseValue: 5
+  attackSpeedRaiseValue: 0.1

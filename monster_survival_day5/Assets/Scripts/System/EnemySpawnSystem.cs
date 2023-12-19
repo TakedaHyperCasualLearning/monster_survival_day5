@@ -59,7 +59,11 @@ public class EnemySpawnSystem
         enemy.transform.position = playerObject.transform.position + spawnPosition;
         CharacterBaseComponent characterBaseComponent = enemy.GetComponent<CharacterBaseComponent>();
         characterBaseComponent.HitPoint = characterBaseComponent.HitPointMax;
-        if (!objectPool.IsNewGenerate) return;
+        if (!objectPool.IsNewGenerate)
+        {
+            characterBaseComponent.gameObject.GetComponent<HitPointUIComponent>().HitPointText.gameObject.SetActive(true);
+            return;
+        }
         gameEvent.AddComponentList?.Invoke(enemy);
         objectPool.IsNewGenerate = false;
     }
